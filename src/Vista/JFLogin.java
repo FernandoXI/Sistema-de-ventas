@@ -40,7 +40,7 @@ public class JFLogin extends javax.swing.JFrame {
             }
         });
 
-        cbxadministrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Vendedor" }));
+        cbxadministrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Vendedor", "Almacenero" }));
         cbxadministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxadministradorActionPerformed(evt);
@@ -138,6 +138,29 @@ public class JFLogin extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta");
             }
+            
+        }
+        
+        else if (cbxadministrador.getSelectedItem().equals("Almacenero"))
+        {
+            if(usuario.equals("pajarraco")&&contraseña.equals("0123"))
+            {
+                esValido = true;
+            }
+            else
+            {
+                esValido = false;
+            }
+            if(esValido)
+            {
+                 JFAlmacenero almacen = new JFAlmacenero();
+                         almacen.setVisible(true);
+            }
+             else
+            {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta");
+            }
+            
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
