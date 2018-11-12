@@ -5,6 +5,7 @@ import Clases.Sistemadeventas;
 import Clases.Personas;
 import Clases.Productos;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.awt.HeadlessException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class JFVenta extends javax.swing.JFrame {
+    ArrayList<Personas> datos = new ArrayList<>();
     
     public void extraer() throws SQLException
     {
@@ -31,11 +33,9 @@ public class JFVenta extends javax.swing.JFrame {
         {
             String n = rs.getString("nombre");
             
-            System.out.println("Cliente: " + n);
         }
     }
     
-    private ArrayList<Personas> listadeclientes;
 
     //controlador
     DefaultTableModel tablaCliente = new DefaultTableModel()
@@ -54,8 +54,6 @@ public class JFVenta extends javax.swing.JFrame {
       txtdni.setText("");
       
     }
-    
-   
     public void guardar()  throws SQLException 
     {
        
@@ -85,13 +83,13 @@ public class JFVenta extends javax.swing.JFrame {
         prep.setInt(5, dni);
         
         prep.executeUpdate();
+        JOptionPane.showMessageDialog(rootPane, "cliente guaradado");
+        limpiartxt();
         
       } catch (Exception e)
       {
         JOptionPane.showMessageDialog(rootPane, "ingrese los datos correctos");
-      }
- 
-      
+      }     
     }
     
    
@@ -126,7 +124,7 @@ public class JFVenta extends javax.swing.JFrame {
         txtbuscarcliente = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblclientes = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -141,7 +139,7 @@ public class JFVenta extends javax.swing.JFrame {
         txtproducto = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblproductos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -263,7 +261,7 @@ public class JFVenta extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesForm/buscar.png"))); // NOI18N
         jButton2.setText("Buscar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblclientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -271,7 +269,7 @@ public class JFVenta extends javax.swing.JFrame {
                 "Nombre", "Direccion", "Telefono", "DNI", "Correo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblclientes);
 
         jButton3.setText("Seleccionar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -391,7 +389,7 @@ public class JFVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblproductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -402,7 +400,7 @@ public class JFVenta extends javax.swing.JFrame {
                 "Producto", "Tipo de producto", "Cantidad", "Total"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblproductos);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -463,12 +461,12 @@ public class JFVenta extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             guardar();
-            JOptionPane.showMessageDialog(rootPane, "cliente guaradado");
+            
         } catch (SQLException ex) {
             Logger.getLogger(JFVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        limpiartxt();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -546,8 +544,8 @@ public class JFVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tblclientes;
+    private javax.swing.JTable tblproductos;
     private javax.swing.JTextField txtbuscarcliente;
     private javax.swing.JTextField txtcliente;
     private javax.swing.JTextField txtcorreo;

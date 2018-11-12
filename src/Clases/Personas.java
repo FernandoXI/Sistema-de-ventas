@@ -3,6 +3,7 @@ package Clases;
 
 
 public class Personas extends Sistemadeventas{
+    private String apellidos;
     private int telefono;
     private String direccion;
     private int dni;
@@ -12,9 +13,10 @@ public class Personas extends Sistemadeventas{
     { 
     }
     
-    public Personas(String nombre, int ID, int telefono, String direccion, int dni, String correo)
+    public Personas(String nombre, int ID, String apellidos, int telefono, String direccion, int dni, String correo)
     {
         this.nombre = nombre;
+        this.apellidos=apellidos;
         this.ID = ID;
         this.telefono = telefono;
         this.direccion = direccion;
@@ -52,5 +54,13 @@ public class Personas extends Sistemadeventas{
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 }
